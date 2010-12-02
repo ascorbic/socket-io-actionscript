@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="onCreationComplete(event);">
+	
+	<!-- Copyright 2010 CLEVR Ltd. -->
+	
+	<mx:Script>
+	    <![CDATA[
+		
+ 	import com.clevr.socket.SocketIo;
+	import com.clevr.socket.IoDataEvent;
+	import mx.events.FlexEvent;
+		
+		/**
+		 *	Application description.
+		 *
+		 *	@langversion ActionScript 3.0
+		 *	@playerversion Flash 9.0
+		 *
+		 *	@author Matt Kane
+		 *	@since  01.12.2010
+		 */
+		
+       private var socket:SocketIo;
+
+      private function esc(msg:String):String {
+            return String(msg).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+      
+      private function addMessage(obj:Object):void {
+	      if ('announcement' in obj) {
+	         chat.htmlText += '<p><em>' + esc(obj.announcement) + '</em></p>';
+         } else if ('message' in obj) {
+            chat.htmlText += '<p><b>' + esc(obj.message[0]) + ':</b> ' + esc(obj.message[1]) + '</p>';
+         }
+      }
+
+		private function onCreationComplete(event:FlexEvent):void {
+		   socket = new SocketIo("127.0.0.1", {port: 8080});
+		   socket.addEventListener(IoDataEvent.DATA, function(e:IoDataEvent):void {
+		      if ('buffer' in e.messageData){
+              message.text = '';
+
+              for (var i:String in e.messageData.buffer) {
+                 addMessage(e.messageData.buffer[i]);
+              }
+            } else addMessage(e.messageData);
+	      });
+	      socket.connect();
+		}
+		
+      private function sendMessage():void {
+         socket.send(message.text);
+         addMessage({ message: ['you', message.text] });
+         message.text = '';
+      }
+
+		
+	    ]]>
+	</mx:Script>
+   <mx:Text id="chat" width="100%" height="100%" text="" />
+   <mx:HBox width="100%">
+      <mx:TextInput id="message" width="100%" />
+      <mx:Button label="Send" click="sendMessage()" />
+   </mx:HBox>
+</mx:WindowedApplication>

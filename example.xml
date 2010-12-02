@@ -1,0 +1,16 @@
+<application xmlns="http://ns.adobe.com/air/application/1.5.3">
+	<id>com.clevr.SocketExample</id>
+	<version>1</version>
+	<filename>Socket.IO Example</filename>
+	<description>Socket.IO Example</description>
+	<copyright>© CLEVR Ltd. 2010</copyright>
+	<allowBrowserInvocation>true</allowBrowserInvocation>
+	<initialWindow>
+		<content>Example.swf</content>
+		<width>800</width>
+		<height>550</height>
+		<minSize>800 550</minSize>
+		<systemChrome>standard</systemChrome> 
+	</initialWindow>
+</application>
+
