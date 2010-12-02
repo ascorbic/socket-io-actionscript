@@ -1,3 +1,12 @@
+/**
+ * Socket.IO Actionscript client
+ * 
+ * @author Matt Kane
+ * @license The MIT license.
+ * @copyright Copyright (c) 2010 CLEVR Ltd
+ */
+
+
 package com.clevr.socket {
 	import flash.events.EventDispatcher;
 	import flash.events.AsyncErrorEvent;

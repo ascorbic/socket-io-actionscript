@@ -1,3 +1,11 @@
+/**
+ * Socket.IO Actionscript client
+ * 
+ * @author Matt Kane
+ * @license The MIT license.
+ * @copyright Copyright (c) 2010 CLEVR Ltd
+ */
+
 package com.clevr.socket
 {	
 	import com.adobe.serialization.json.JSON;

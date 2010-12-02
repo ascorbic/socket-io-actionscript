@@ -5,7 +5,14 @@
 	
 	<mx:Script>
 	    <![CDATA[
-		
+		 /**
+        * Socket.IO Actionscript client
+        * 
+        * @author Matt Kane
+        * @license The MIT license.
+        * @copyright Copyright (c) 2010 CLEVR Ltd
+        */
+      
  	import com.clevr.socket.SocketIo;
 	import com.clevr.socket.IoDataEvent;
 	import mx.events.FlexEvent;
